@@ -7,6 +7,7 @@ function MainComponent() {
   const [outputCurrency, setOutputCurrency] = useState();
   const [resultVisible, setResultVisible] = useState(false);
   const [codeSymbol, setCodeSymbol] = useState([]);
+  const [totalAmount, setTotalAmount] = useState();
 
   let objectEntries;
 
@@ -26,7 +27,10 @@ function MainComponent() {
       `https://api.exchangerate.host/convert?from=${currentCurrency}&to=${outputCurrency}`
     );
     const data = await resp.json();
-    console.log(data);
+
+    setTotalAmount(
+      (Math.round(data.result * currentValue * 100) / 100).toFixed(2)
+    );
   };
 
   const handleCurrentChange = (e) => {
@@ -71,7 +75,7 @@ function MainComponent() {
             <input
               type="text"
               value={currentValue}
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", fontSize: "1.4rem" }}
               onChange={handleCurrentChange}
               placeholder="Introduce cantidad"
               required
@@ -82,16 +86,17 @@ function MainComponent() {
             <select
               value={currentCurrency}
               onChange={handleDropdownMenuCurrent}
+              required
             >
-              <option value="">Selecciona una opción</option>
+              <option value=""></option>
               {codeSymbol.map((s, id) => {
                 return (
                   <option value={`${s.code}`} key={id}>{`${s.code}`}</option>
                 );
               })}
             </select>
-            <select value={outputCurrency} onChange={handleDropdownMenuOutput}>
-              <option value="">Selecciona una opción</option>
+            <select value={outputCurrency} onChange={handleDropdownMenuOutput} required>
+              <option value=""></option>
               {codeSymbol.map((s, id) => {
                 return (
                   <option value={`${s.code}`} key={id}>{`${s.code}`}</option>
@@ -106,7 +111,7 @@ function MainComponent() {
         </div>
 
         <div className={`result ${resultVisible ? "visible" : ""}`}>
-          <h3>{`${currentValue} ${currentCurrency} = X ${outputCurrency}`}</h3>
+          <h3>{`${currentValue} ${currentCurrency} = ${totalAmount} ${outputCurrency}`}</h3>
         </div>
       </div>
     </div>
