@@ -45,6 +45,7 @@
 
 #currenyInput #currencyContainer input {
   align-content: center;
+  font-size: 1.2rem;
 }
 
 #currenyInput #selectCurrencyContainer * {
@@ -61,7 +62,9 @@
 
 #selectCurrencyContainer select {
   min-height: 1.8rem;
+  max-width: 8rem;
   text-align: center;
+  font-size: 1.2rem;
 }
 
 #currencyContainer {
