@@ -21,11 +21,12 @@
 }
 
 .container h2 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   color: black;
 }
 
 #headerContainer img {
+  margin-top: 4rem;
   max-height: 5rem;
 }
 
