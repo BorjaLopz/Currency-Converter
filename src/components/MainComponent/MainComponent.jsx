@@ -29,6 +29,8 @@ function MainComponent() {
     setTotalAmount(
       (Math.round(data.result * currentValue * 100) / 100).toFixed(2)
     );
+    console.log("totalAmount");
+    console.log(totalAmount);
   };
 
   const handleSwitchCurrency = () => {
