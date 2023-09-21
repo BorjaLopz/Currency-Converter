@@ -21,7 +21,10 @@ const options_converter = {
 
 function MainComponent() {
   const [currentValue, setCurrentValue] = useState();
+  const [generalData, setGeneralData] = useState();
   const [currentCurrency, setCurrentCurrency] = useState();
+  const [currentCurrencyName, setCurrentCurrencyName] = useState();
+  const [outputCurrencyName, setoutputCurrencyName] = useState();
   const [outputCurrency, setOutputCurrency] = useState();
   const [resultVisible, setResultVisible] = useState(false);
   const [adviceVisible, setAdviceVisible] = useState(false);
@@ -45,7 +48,7 @@ function MainComponent() {
       }
       //Ordenamos alfabeticamente los simbolos que hemos obtenido
       arraySimbolos.sort((a, b) => a.clave.localeCompare(b.clave));
-
+      setGeneralData(data);
       setCodeSymbol(arraySimbolos);
     } catch (error) {
       console.error(error);
@@ -99,13 +102,36 @@ function MainComponent() {
       setResultVisible(true);
     } else {
       setAdviceVisible(true);
-      console.log("Te faltan cosas manin");
     }
+  };
+
+  const getCurrentCurrencyName = () => {
+    codeSymbol.map((c) => {
+      if (c.clave === currentCurrency) {
+        setCurrentCurrencyName(c.valor);
+      }
+    });
+  };
+
+  const getOutputCurrencyName = () => {
+    codeSymbol.map((c) => {
+      if (c.clave === outputCurrency) {
+        setoutputCurrencyName(c.valor);
+      }
+    });
   };
 
   useEffect(() => {
     fetchAPI();
   }, []);
+
+  useEffect(() => {
+    getCurrentCurrencyName();
+  }, [currentCurrency]);
+
+  useEffect(() => {
+    getOutputCurrencyName();
+  }, [outputCurrency]);
 
   return (
     <div className="Main">
@@ -129,42 +155,51 @@ function MainComponent() {
               />
             </div>
             <div id="selectCurrencyContainer">
-              <select
-                value={currentCurrency}
-                onChange={handleDropdownMenuCurrent}
-                required
-              >
-                <option value=""></option>
-                {codeSymbol.map((s, id) => {
-                  return (
-                    <option
-                      value={`${s.clave}`}
-                      key={id}
-                    >{`${s.clave}`}</option>
-                  );
-                })}
-              </select>
+              <div id="selectAndName">
+                <select
+                  value={currentCurrency}
+                  onChange={handleDropdownMenuCurrent}
+                  required
+                >
+                  <option value="none"></option>
+                  {codeSymbol.map((s, id) => {
+                    return (
+                      <option
+                        value={`${s.clave}`}
+                        key={id}
+                      >{`${s.clave}`}</option>
+                    );
+                  })}
+                </select>
+                <div>
+                  <p>{currentCurrencyName}</p>
+                </div>
+              </div>
               {resultVisible && (
                 <button onClick={handleSwitchCurrency} id="buttonExchange">
                   <img src="/icons/exchange.svg" alt="" />
                 </button>
               )}
-
-              <select
-                value={outputCurrency}
-                onChange={handleDropdownMenuOutput}
-                required
-              >
-                <option value=""></option>
-                {codeSymbol.map((s, id) => {
-                  return (
-                    <option
-                      value={`${s.clave}`}
-                      key={id}
-                    >{`${s.clave}`}</option>
-                  );
-                })}
-              </select>
+              <div id="selectAndName">
+                <select
+                  value={outputCurrency}
+                  onChange={handleDropdownMenuOutput}
+                  required
+                >
+                  <option value="none"></option>
+                  {codeSymbol.map((s, id) => {
+                    return (
+                      <option
+                        value={`${s.clave}`}
+                        key={id}
+                      >{`${s.clave}`}</option>
+                    );
+                  })}
+                </select>
+                <div>
+                  <p>{outputCurrencyName}</p>
+                </div>
+              </div>
             </div>
           </div>
 

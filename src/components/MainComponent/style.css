@@ -49,16 +49,17 @@
   font-size: 1.2rem;
 }
 
-#currenyInput #selectCurrencyContainer * {
+/* #currenyInput #selectCurrencyContainer * {
   justify-content: space-around;
   align-items: center;
-}
+} */
 
 #selectCurrencyContainer {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: start;
 }
 
 #selectCurrencyContainer select {
@@ -97,6 +98,7 @@
 
 #buttonExchange {
   background-color: white;
+  max-height: 4rem;
 }
 
 button,
@@ -107,6 +109,26 @@ button,
 button:hover,
 #buttonExchange:hover {
   background-color: #242424;
+}
+
+#selectAndName {
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#selectAndName div {
+  color: black;
+  width: 100%;
+  flex: 3;
+}
+
+#selectAndName select {
+  flex: 2;
 }
 
 @media (max-width: 550px) {
