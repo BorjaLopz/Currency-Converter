@@ -26,6 +26,8 @@ function MainComponent() {
       `https://api.exchangerate.host/convert?from=${currentCurrency}&to=${outputCurrency}`
     );
     const data = await resp.json();
+    console.log("data");
+    console.log(data);
     setTotalAmount(
       (Math.round(data.result * currentValue * 100) / 100).toFixed(2)
     );
