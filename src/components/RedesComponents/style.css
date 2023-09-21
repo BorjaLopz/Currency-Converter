@@ -1,8 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .redes {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  gap: 3rem;
+  justify-content: space-around !important;
+  gap: 2rem;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.445);
@@ -11,7 +18,7 @@
 }
 
 .redes img {
-  width: 4rem;
+  width: 3.4rem;
 }
 
 .redes > li {

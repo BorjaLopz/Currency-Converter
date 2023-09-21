@@ -25,5 +25,12 @@
     "name": "Buy me a beer",
     "url": "https://www.buymeacoffee.com/BorjaLopz",
     "icon": "BuyMeABeer_Icon"
+  },
+
+  {
+    "id": 5,
+    "name": "Porfolio",
+    "url": "https://borjalopezdiaz.netlify.app/",
+    "icon": "Portfolio"
   }
 ]
