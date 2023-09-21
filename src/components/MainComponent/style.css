@@ -128,6 +128,7 @@ button:hover,
 }
 
 #selectAndName select {
+  min-height: 4rem;
   flex: 2;
 }
 

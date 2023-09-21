@@ -161,7 +161,7 @@ function MainComponent() {
                   onChange={handleDropdownMenuCurrent}
                   required
                 >
-                  <option value="none"></option>
+                  <option value="none">None</option>
                   {codeSymbol.map((s, id) => {
                     return (
                       <option
@@ -186,7 +186,7 @@ function MainComponent() {
                   onChange={handleDropdownMenuOutput}
                   required
                 >
-                  <option value="none"></option>
+                  <option value="none">None</option>
                   {codeSymbol.map((s, id) => {
                     return (
                       <option
