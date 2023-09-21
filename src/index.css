@@ -43,17 +43,17 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #353535;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+
+/* button:hover {
+  background-color: #000000;
+  border-color: #213547;
+  border-width: 3px;
+} */
+
 
 @media (prefers-color-scheme: light) {
   :root {

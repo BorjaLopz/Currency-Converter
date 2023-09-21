@@ -26,16 +26,14 @@ function MainComponent() {
       `https://api.exchangerate.host/convert?from=${currentCurrency}&to=${outputCurrency}`
     );
     const data = await resp.json();
-
-    console.log("data");
-    console.log(data);
-
-    console.log(
-      (Math.round(data.result * currentValue * 100) / 100).toFixed(2)
-    );
     setTotalAmount(
       (Math.round(data.result * currentValue * 100) / 100).toFixed(2)
     );
+  };
+
+  const handleSwitchCurrency = () => {
+    setCurrentCurrency(outputCurrency);
+    setOutputCurrency(currentCurrency);
   };
 
   const handleCurrentChange = (e) => {
@@ -50,10 +48,6 @@ function MainComponent() {
   const handleDropdownMenuCurrent = (e) => {
     setCurrentCurrency(e.target.value);
     setResultVisible(false);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
   };
 
   const handleDropdownMenuOutput = (e) => {
@@ -113,6 +107,12 @@ function MainComponent() {
                   );
                 })}
               </select>
+              {resultVisible && (
+                <button onClick={handleSwitchCurrency} id="buttonExchange">
+                  <img src="/icons/exchange.svg" alt="" />
+                </button>
+              )}
+
               <select
                 value={outputCurrency}
                 onChange={handleDropdownMenuOutput}
@@ -132,15 +132,10 @@ function MainComponent() {
             <button type="submit">Calcular</button>
           </div>
         </form>
-        {!setAdviceVisible ? (
-          <div className={`result`}>
-            <h3>Tienes que rellenar todos los datos!</h3>
-          </div>
-        ) : (
-          <div className={`result ${resultVisible ? "visible" : ""}`}>
-            <h3>{`${currentValue} ${currentCurrency} = ${totalAmount} ${outputCurrency}`}</h3>
-          </div>
-        )}
+
+        <div className={`result ${resultVisible ? "visible" : ""}`}>
+          <h3>{`${currentValue} ${currentCurrency} = ${totalAmount} ${outputCurrency}`}</h3>
+        </div>
       </div>
     </div>
   );

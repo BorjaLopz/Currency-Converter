@@ -90,6 +90,24 @@
   visibility: visible;
 }
 
+#buttonExchange img {
+  max-width: 2rem;
+}
+
+#buttonExchange {
+  background-color: white;
+}
+
+button,
+#buttonExchange {
+  transition: background-color 0.25s ease-in-out;
+}
+
+button:hover,
+#buttonExchange:hover {
+  background-color: #242424;
+}
+
 @media (max-width: 550px) {
   body {
     margin: 0;
@@ -142,5 +160,18 @@
     gap: 1rem;
 
     width: 80%;
+  }
+
+  #buttonExchange {
+    max-width: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #buttonExchange img {
+    max-width: 1.5rem;
+    margin-top: 0;
   }
 }
