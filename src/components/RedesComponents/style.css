@@ -39,3 +39,9 @@
     transform: scale(1.25);
   }
 }
+
+@media (max-width: 550px) {
+  .redes img {
+    width: 2rem;
+  }
+}
