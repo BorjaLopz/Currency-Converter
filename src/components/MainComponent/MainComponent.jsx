@@ -57,9 +57,9 @@ function MainComponent() {
       );
       const result = await response.json();
 
-      setTotalAmount(
-        (Math.round(result.result * currentValue * 100) / 100).toFixed(2)
-      );
+      console.log(result.result);
+
+      setTotalAmount((Math.round(result.result * 100) / 100).toFixed(2));
     } catch (error) {
       console.error(error);
     }
