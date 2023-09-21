@@ -11,7 +11,7 @@
   background-color: white;
   height: 35rem;
   border-radius: 10px;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.288);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.445);
 
   display: flex;
   flex-direction: column;
@@ -82,6 +82,7 @@
 .result {
   color: black;
   visibility: hidden;
+  font-size: 1.6rem;
 }
 
 .visible {
@@ -89,8 +90,18 @@
 }
 
 @media (max-width: 550px) {
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Establecer la altura del cuerpo para centrar verticalmente */
+  }
   .container {
-    max-width: 15rem;
+    width: 100%; /* Ocupa el 80% del ancho de la pantalla */
+    max-width: 600px; /* Establece un ancho máximo si lo deseas */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.445);
   }
 
   .container h2 {
