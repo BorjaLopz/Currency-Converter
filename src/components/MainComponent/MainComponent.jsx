@@ -1,6 +1,24 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 
+const url_symbols =
+  "https://currency-conversion-and-exchange-rates.p.rapidapi.com/symbols";
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "970d4e8724msh0af10a4207e09adp16f8f4jsn0aa601995d22",
+    "X-RapidAPI-Host": "currency-conversion-and-exchange-rates.p.rapidapi.com",
+  },
+};
+
+const options_converter = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "970d4e8724msh0af10a4207e09adp16f8f4jsn0aa601995d22",
+    "X-RapidAPI-Host": "currency-conversion-and-exchange-rates.p.rapidapi.com",
+  },
+};
+
 function MainComponent() {
   const [currentValue, setCurrentValue] = useState();
   const [currentCurrency, setCurrentCurrency] = useState();
@@ -12,27 +30,39 @@ function MainComponent() {
 
   const fetchAPI = async () => {
     try {
-      const resp = await fetch("https://api.exchangerate.host/symbols");
-      const data = await resp.json();
-      const objectValuesArray = Object.values(data.symbols);
-      setCodeSymbol(objectValuesArray);
+      const response = await fetch(url_symbols, options);
+      const result = await response.json();
+      const data = result.symbols;
+      const arraySimbolos = [];
+      for (const clave in data) {
+        if (data.hasOwnProperty(clave)) {
+          const nuevoObjeto = {
+            clave: clave,
+            valor: data[clave],
+          };
+          arraySimbolos.push(nuevoObjeto);
+        }
+      }
+      setCodeSymbol(arraySimbolos);
     } catch (error) {
-      console.log("Ha ocurrido un error. ", error.message);
+      console.error(error);
     }
   };
 
   const handleChange = async () => {
-    const resp = await fetch(
-      `https://api.exchangerate.host/convert?from=${currentCurrency}&to=${outputCurrency}`
-    );
-    const data = await resp.json();
-    console.log("data");
-    console.log(data);
-    setTotalAmount(
-      (Math.round(data.result * currentValue * 100) / 100).toFixed(2)
-    );
-    console.log("totalAmount");
-    console.log(totalAmount);
+    try {
+      const response = await fetch(
+        `https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert?from=${currentCurrency}&to=${outputCurrency}&amount=${currentValue}`,
+        options_converter
+      );
+      const result = await response.json();
+
+      setTotalAmount(
+        (Math.round(result.result * currentValue * 100) / 100).toFixed(2)
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleSwitchCurrency = () => {
@@ -97,7 +127,6 @@ function MainComponent() {
                 required
               />
             </div>
-
             <div id="selectCurrencyContainer">
               <select
                 value={currentCurrency}
@@ -107,7 +136,10 @@ function MainComponent() {
                 <option value=""></option>
                 {codeSymbol.map((s, id) => {
                   return (
-                    <option value={`${s.code}`} key={id}>{`${s.code}`}</option>
+                    <option
+                      value={`${s.clave}`}
+                      key={id}
+                    >{`${s.clave}`}</option>
                   );
                 })}
               </select>
@@ -125,7 +157,10 @@ function MainComponent() {
                 <option value=""></option>
                 {codeSymbol.map((s, id) => {
                   return (
-                    <option value={`${s.code}`} key={id}>{`${s.code}`}</option>
+                    <option
+                      value={`${s.clave}`}
+                      key={id}
+                    >{`${s.clave}`}</option>
                   );
                 })}
               </select>
