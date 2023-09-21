@@ -43,6 +43,9 @@ function MainComponent() {
           arraySimbolos.push(nuevoObjeto);
         }
       }
+      //Ordenamos alfabeticamente los simbolos que hemos obtenido
+      arraySimbolos.sort((a, b) => a.clave.localeCompare(b.clave));
+
       setCodeSymbol(arraySimbolos);
     } catch (error) {
       console.error(error);
@@ -56,8 +59,6 @@ function MainComponent() {
         options_converter
       );
       const result = await response.json();
-
-      console.log(result.result);
 
       setTotalAmount((Math.round(result.result * 100) / 100).toFixed(2));
     } catch (error) {
