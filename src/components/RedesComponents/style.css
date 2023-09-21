@@ -5,7 +5,7 @@
   gap: 3rem;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.445);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.445);
   min-height: 6rem;
   align-items: center;
 }

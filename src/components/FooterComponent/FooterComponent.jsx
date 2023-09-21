@@ -1,7 +1,12 @@
+
+import "./style.css";
+import RedesComponents from "../RedesComponents/RedesComponents";
+
 function FooterComponent() {
   return (
     <div className="Footer">
-      {/* <h1>FooterComponent</h1> */}
+      <RedesComponents />
+      
     </div>
   );
 }
